@@ -5,9 +5,11 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Http.Description;
 using System.Web.Mvc;
 using KarakasUniversity.DAL;
 using KarakasUniversity.Models;
+using KarakasUniversity.Services.Interfaces;
 using PagedList;
 
 namespace KarakasUniversity.Controllers
@@ -15,6 +17,14 @@ namespace KarakasUniversity.Controllers
     public class StudentController : Controller
     {
         private SchoolContext db = new SchoolContext();
+
+        private readonly IStudentService _studentService;
+
+
+        public StudentController(IStudentService studentService)
+        {
+            _studentService = studentService;
+        }
 
         // GET: Student
         public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
@@ -63,18 +73,13 @@ namespace KarakasUniversity.Controllers
         }
 
         // GET: Student/Details/5
+        [ResponseType(typeof(Student))]
         public ActionResult Details(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Student student = db.Students.Find(id);
-            if (student == null)
-            {
-                return HttpNotFound();
-            }
-            return View(student);
+            
+            var result = _studentService.getStudentDetails(id);
+
+            return View(result);
         }
 
         // GET: Student/Create
