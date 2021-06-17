@@ -11,5 +11,6 @@ namespace KarakasUniversity.Services.Interfaces
     {
         Student getStudentDetails(int? id);
 
+        List<Student> getStudentIndex(string sortOrder, string searchString);
     }
 }

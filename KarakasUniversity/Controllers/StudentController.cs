@@ -43,29 +43,7 @@ namespace KarakasUniversity.Controllers
             }
 
             ViewBag.CurrentFilter = searchString;
-
-            var students = from s in db.Students
-                           select s;
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                students = students.Where(s => s.LastName.Contains(searchString)
-                                       || s.FirstMidName.Contains(searchString));
-            }
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    students = students.OrderByDescending(s => s.LastName);
-                    break;
-                case "Date":
-                    students = students.OrderBy(s => s.EnrollmentDate);
-                    break;
-                case "date_desc":
-                    students = students.OrderByDescending(s => s.EnrollmentDate);
-                    break;
-                default:  // Name ascending 
-                    students = students.OrderBy(s => s.LastName);
-                    break;
-            }
+            var students = _studentService.getStudentIndex(sortOrder, searchString);
 
             int pageSize = 3;
             int pageNumber = (page ?? 1);
