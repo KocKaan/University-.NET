@@ -1,4 +1,10 @@
-﻿using System;
+﻿using Autofac;
+using Autofac.Integration.Mvc;
+using KarakasUniversity.DAL;
+using KarakasUniversity.Models.Interfaces;
+using KarakasUniversity.Services;
+using KarakasUniversity.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +18,12 @@ namespace KarakasUniversity
     {
         protected void Application_Start()
         {
+            var builder = IocConfig.Configure();
+
+            var container = builder.Build();
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
