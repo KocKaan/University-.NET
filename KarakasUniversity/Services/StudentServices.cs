@@ -12,12 +12,12 @@ namespace KarakasUniversity.Services
 
     public class StudentServices : IStudentService
     {
-        private readonly ISchoolContext _dataContext;
+        private readonly ISchoolContext _schoolContext;
 
 
         public StudentServices(ISchoolContext schoolContext)
         {
-            _dataContext= schoolContext;
+            _schoolContext= schoolContext;
         }
 
 
@@ -25,7 +25,7 @@ namespace KarakasUniversity.Services
 
         public List<Student> getStudentIndex(string sortOrder, string searchString)
         {
-            var students = from s in _dataContext.Students
+            var students = from s in _schoolContext.Students
                            select s;
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -58,7 +58,7 @@ namespace KarakasUniversity.Services
   //          {
     //            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
       //      }
-            Student student = _dataContext.Students.Find(id);
+            Student student = _schoolContext.Students.Find(id);
             //    if (student == null)
             //  {
             //    return HttpNotFound();
@@ -66,6 +66,22 @@ namespace KarakasUniversity.Services
             return student;
         }
 
+        public void postStudentCreate(Student student) 
+        {
+            _schoolContext.Students.Add(student);
+            _schoolContext.SaveChanges();
+
+          //deleted the save changes method
+        }
+        public Student getStudentEdit(int? id)
+        {
+          Student student=_schoolContext.Students.Find(id);
+
+            return student;
+
+        }
+
+        
        
 
 

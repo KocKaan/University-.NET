@@ -21,5 +21,7 @@ namespace KarakasUniversity.DAL
            //removes pluralized table names
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+
+       
     }
 }

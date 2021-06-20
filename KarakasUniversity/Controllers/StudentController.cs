@@ -26,6 +26,7 @@ namespace KarakasUniversity.Controllers
             _studentService = studentService;
         }
 
+        [ResponseType(typeof(List<Student>))]
         // GET: Student
         public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
@@ -77,8 +78,8 @@ namespace KarakasUniversity.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    db.Students.Add(student);
-                    db.SaveChanges();
+
+                    _studentService.postStudentCreate(student);
                     return RedirectToAction("Index");
                 }
             }
@@ -97,7 +98,7 @@ namespace KarakasUniversity.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Students.Find(id);
+            Student student = _studentService.getStudentEdit(id);
             if (student == null)
             {
                 return HttpNotFound();
@@ -122,6 +123,7 @@ namespace KarakasUniversity.Controllers
             {
                 try
                 {
+
                     db.SaveChanges();
 
                     return RedirectToAction("Index");
