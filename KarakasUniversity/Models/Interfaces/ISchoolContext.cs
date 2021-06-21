@@ -8,7 +8,7 @@ namespace KarakasUniversity.Models.Interfaces
          DbSet<Enrollment> Enrollments { get; set; }
          DbSet<Course> Courses { get; set; }
 
-        int SaveChanges(); 
+        int SaveChanges();
     }
 
     
