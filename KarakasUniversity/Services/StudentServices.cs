@@ -99,6 +99,11 @@ namespace KarakasUniversity.Services
 
         }
 
+        public void dispose()
+        {
+            _schoolContext.Dispose();
+        }
+
 
     }
 

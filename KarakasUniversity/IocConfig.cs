@@ -20,6 +20,7 @@ namespace KarakasUniversity
 
             builder.RegisterType<SchoolContext>().As<ISchoolContext>();
             builder.RegisterType<StudentServices>().As<IStudentService>();
+            builder.RegisterType<HomeService>().As<IHomeService>();
 
             return builder;
         }

@@ -14,6 +14,7 @@ namespace KarakasUniversity.Models.Interfaces
         int SaveChanges();
 
         DbEntityEntry Entry(Object entity);
+        void Dispose();
     }
 
     

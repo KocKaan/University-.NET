@@ -144,7 +144,7 @@ namespace KarakasUniversity.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _studentService.dispose();
             }
             base.Dispose(disposing);
         }

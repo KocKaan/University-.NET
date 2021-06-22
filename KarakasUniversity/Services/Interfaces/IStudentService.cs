@@ -21,6 +21,8 @@ namespace KarakasUniversity.Services.Interfaces
 
         void postStudentDelete(int id);
 
+        void dispose();
+
 
     }
 }

@@ -4,14 +4,22 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using KarakasUniversity.DAL;
+using KarakasUniversity.Services;
+using KarakasUniversity.Services.Interfaces;
 using KarakasUniversity.ViewModels;
 
 namespace KarakasUniversity.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IHomeService _homeService;
 
-            private SchoolContext db = new SchoolContext();
+
+
+        public HomeController(IHomeService homeService)
+        {
+            _homeService = homeService;
+        }
             public ActionResult Index()
         {
             return View();
@@ -20,17 +28,9 @@ namespace KarakasUniversity.Controllers
 
         public ActionResult About()
         {
-            //The LINQ statement groups the student entities by enrollment date, calculates the number of
-            //entities in each group, and stores the results in a collection of EnrollmentDateGroup view model objects.
 
-            IQueryable<EnrollmentDateGroup> data = from student in db.Students
-                                                   group student by student.EnrollmentDate into dateGroup
-                                                   select new EnrollmentDateGroup()
-                                                   {
-                                                       EnrollmentDate = dateGroup.Key,
-                                                       StudentCount = dateGroup.Count()
-                                                   };
-            return View(data.ToList());
+            List<EnrollmentDateGroup> dataList = _homeService.getStudentEnrollments();
+            return View(dataList);
         }
 
         public ActionResult Contact()
@@ -42,7 +42,7 @@ namespace KarakasUniversity.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            _homeService.dispose();
             base.Dispose(disposing);
         }
     }
