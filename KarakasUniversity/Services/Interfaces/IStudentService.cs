@@ -9,12 +9,18 @@ namespace KarakasUniversity.Services.Interfaces
 {
     public interface IStudentService
     {
-        Student getStudentDetails(int? id);
+        Student getStudent(int? id);
 
         List<Student> getStudentIndex(string sortOrder, string searchString);
 
         void postStudentCreate(Student student);
 
         Student getStudentEdit(int? id);
+
+        void postStudentEdit(Student std);
+
+        void postStudentDelete(int id);
+
+
     }
 }

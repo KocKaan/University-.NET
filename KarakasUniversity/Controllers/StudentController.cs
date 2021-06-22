@@ -56,7 +56,7 @@ namespace KarakasUniversity.Controllers
         public ActionResult Details(int? id)
         {
             
-            var result = _studentService.getStudentDetails(id);
+            var result = _studentService.getStudent(id);
 
             return View(result);
         }
@@ -74,20 +74,16 @@ namespace KarakasUniversity.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "LastName, FirstMidName, EnrollmentDate")] Student student)
         {
-            try
-            {
+            
+           
                 if (ModelState.IsValid)
                 {
 
                     _studentService.postStudentCreate(student);
                     return RedirectToAction("Index");
                 }
-            }
-            catch (DataException /* dex */)
-            {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
-            }
+            
+            
             return View(student);
         }
 
@@ -103,7 +99,7 @@ namespace KarakasUniversity.Controllers
             {
                 return HttpNotFound();
             }
-            return View(student);
+            return View("Edit",student);
         }
 
         // POST: Student/Edit/5
@@ -111,45 +107,20 @@ namespace KarakasUniversity.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult EditPost(int? id)
+        public ActionResult EditPost(Student std)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var studentToUpdate = db.Students.Find(id);
-            if (TryUpdateModel(studentToUpdate, "",
-               new string[] { "LastName", "FirstMidName", "EnrollmentDate" }))
-            {
-                try
-                {
-
-                    db.SaveChanges();
-
-                    return RedirectToAction("Index");
-                }
-                catch (DataException /* dex */)
-                {
-                    //Log the error (uncomment dex variable name and add a line here to write a log.
-                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
-                }
-            }
-            return View(studentToUpdate);
+            
+           _studentService.postStudentEdit(std);
+            
+            return RedirectToAction("Index");
         }
 
         // GET: Student/Delete/5
-        public ActionResult Delete(int? id, bool? saveChangesError = false)
+        public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            if (saveChangesError.GetValueOrDefault())
-            {
-                ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
-            }
-            Student student = db.Students.Find(id);
-            if (student == null)
+
+            var student = _studentService.getStudent(id);
+            if(student == null)
             {
                 return HttpNotFound();
             }
@@ -161,17 +132,11 @@ namespace KarakasUniversity.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
-            try
-            {
-                Student student = db.Students.Find(id);
-                db.Students.Remove(student);
-                db.SaveChanges();
-            }
-            catch (DataException/* dex */)
-            {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                return RedirectToAction("Delete", new { id = id, saveChangesError = true });
-            }
+
+
+            _studentService.postStudentDelete(id);
+            
+           
             return RedirectToAction("Index");
         }
 

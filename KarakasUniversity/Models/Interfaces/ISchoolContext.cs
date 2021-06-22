@@ -1,7 +1,10 @@
 ﻿
 namespace KarakasUniversity.Models.Interfaces
 {
+    using System;
     using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
+
     public interface ISchoolContext
     {
          DbSet<Student> Students { get; set; }
@@ -9,6 +12,8 @@ namespace KarakasUniversity.Models.Interfaces
          DbSet<Course> Courses { get; set; }
 
         int SaveChanges();
+
+        DbEntityEntry Entry(Object entity);
     }
 
     

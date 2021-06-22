@@ -7,6 +7,7 @@ namespace KarakasUniversity.Services
     using PagedList;
     using System;
     using System.Collections.Generic;
+    using System.Data.Entity;
     using System.Linq;
     using System.Web;
 
@@ -52,7 +53,7 @@ namespace KarakasUniversity.Services
             return students.ToList();
         }
 
-        public Student getStudentDetails(int? id)
+        public Student getStudent(int? id)
         {
 //if (id == null)
   //          {
@@ -80,12 +81,23 @@ namespace KarakasUniversity.Services
             return student;
 
         }
-
         
-       
+        public void postStudentEdit(Student std)
+        {
+            _schoolContext.Entry(std).State = EntityState.Modified;
+            _schoolContext.SaveChanges();
 
+         //  return RedirectToAction("Index");
 
+        }
 
+        public void postStudentDelete(int id)
+        {
+            Student student = _schoolContext.Students.Find(id);
+            _schoolContext.Students.Remove(student);
+            _schoolContext.SaveChanges();
+
+        }
 
 
     }
