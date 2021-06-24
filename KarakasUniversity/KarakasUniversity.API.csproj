@@ -189,6 +189,7 @@
     <Compile Include="Services\Interfaces\IStudentService.cs" />
     <Compile Include="Services\StudentServices.cs" />
     <Compile Include="ViewModels\EnrollmentDateGroup.cs" />
+    <Compile Include="ViewModels\StudentPagedList.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -254,6 +255,12 @@
     <EmbeddedResource Include="Migrations\202106210842053_InitialCreate.resx">
       <DependentUpon>202106210842053_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Deneme\KarakasUniversity.Services.csproj">
+      <Project>{803f1365-98d7-4a64-956b-158d13169545}</Project>
+      <Name>KarakasUniversity.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
