@@ -169,27 +169,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="IocConfig.cs" />
-    <Compile Include="Migrations\202106210842053_InitialCreate.cs" />
-    <Compile Include="Migrations\202106210842053_InitialCreate.Designer.cs">
-      <DependentUpon>202106210842053_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Entities\SchoolContext.cs" />
-    <Compile Include="Models\DatabaseInitializer\SchoolInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Course.cs" />
-    <Compile Include="Models\Enrollment.cs" />
-    <Compile Include="Models\Interfaces\ISchoolContext.cs" />
-    <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\HomeService.cs" />
-    <Compile Include="Services\Interfaces\IHomeService.cs" />
-    <Compile Include="Services\Interfaces\IStudentService.cs" />
-    <Compile Include="Services\StudentServices.cs" />
-    <Compile Include="ViewModels\EnrollmentDateGroup.cs" />
-    <Compile Include="ViewModels\StudentPagedList.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -252,14 +235,13 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202106210842053_InitialCreate.resx">
-      <DependentUpon>202106210842053_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Deneme\KarakasUniversity.Services.csproj">
       <Project>{803f1365-98d7-4a64-956b-158d13169545}</Project>
       <Name>KarakasUniversity.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KarakasUniversity.Model\KarakasUniversity.Model.csproj">
+      <Project>{d1efadba-14ba-41d7-8452-07768fb46ba3}</Project>
+      <Name>KarakasUniversity.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

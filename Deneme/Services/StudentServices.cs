@@ -1,4 +1,6 @@
 ﻿
+using PagedList;
+
 namespace KarakasUniversity.Services
 {
     using Deneme;
