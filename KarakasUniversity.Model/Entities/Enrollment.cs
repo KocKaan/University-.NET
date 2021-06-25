@@ -1,4 +1,6 @@
-﻿namespace KarakasUniversity.Models
+﻿using KarakasUniversity.Model.Entities;
+
+namespace KarakasUniversity.Models
 {
     public enum Grade
     {

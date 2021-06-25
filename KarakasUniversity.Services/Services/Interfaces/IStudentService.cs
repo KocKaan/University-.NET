@@ -1,4 +1,4 @@
-﻿using KarakasUniversity.Models;
+﻿using KarakasUniversity.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

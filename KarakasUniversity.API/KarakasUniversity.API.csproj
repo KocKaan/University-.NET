@@ -12,8 +12,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>KarakasUniversity</RootNamespace>
-    <AssemblyName>KarakasUniversity</AssemblyName>
+    <RootNamespace>KarakasUniversity.API</RootNamespace>
+    <AssemblyName>KarakasUniversity.API</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -235,13 +235,13 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Deneme\KarakasUniversity.Services.csproj">
-      <Project>{803f1365-98d7-4a64-956b-158d13169545}</Project>
-      <Name>KarakasUniversity.Services</Name>
-    </ProjectReference>
     <ProjectReference Include="..\KarakasUniversity.Model\KarakasUniversity.Model.csproj">
-      <Project>{d1efadba-14ba-41d7-8452-07768fb46ba3}</Project>
+      <Project>{D1EFADBA-14BA-41D7-8452-07768FB46BA3}</Project>
       <Name>KarakasUniversity.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KarakasUniversity.Services\KarakasUniversity.Services.csproj">
+      <Project>{803F1365-98D7-4A64-956B-158D13169545}</Project>
+      <Name>KarakasUniversity.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

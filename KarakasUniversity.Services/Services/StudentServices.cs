@@ -4,7 +4,7 @@ using PagedList;
 namespace KarakasUniversity.Services
 {
     using Deneme;
-    using KarakasUniversity.Models;
+    using KarakasUniversity.Model.Entities;
     using KarakasUniversity.Models.Interfaces;
     using KarakasUniversity.Services.Interfaces;
     using PagedList;
@@ -13,7 +13,7 @@ namespace KarakasUniversity.Services
     using System.Data.Entity;
     using System.Linq;
     using System.Web;
-    
+
 
     public class StudentServices : IStudentService
     {

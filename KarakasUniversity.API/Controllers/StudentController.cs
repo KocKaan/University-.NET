@@ -7,8 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Http.Description;
 using System.Web.Mvc;
-using KarakasUniversity.DAL;
-using KarakasUniversity.Models;
+using KarakasUniversity.Model.Entities;
 using KarakasUniversity.Services.Interfaces;
 using PagedList;
 

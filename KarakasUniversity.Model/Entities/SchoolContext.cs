@@ -3,9 +3,9 @@ using KarakasUniversity.Models.Interfaces;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
-namespace KarakasUniversity.DAL
+namespace KarakasUniversity.Model.Entities
 {
-    public class SchoolContext : DbContext ,ISchoolContext
+    public class SchoolContext : DbContext, ISchoolContext
     {
 
         public SchoolContext() : base("SchoolContext")
@@ -18,10 +18,10 @@ namespace KarakasUniversity.DAL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-           //removes pluralized table names
+            //removes pluralized table names
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
-       
+
     }
 }

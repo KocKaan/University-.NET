@@ -1,5 +1,6 @@
 namespace KarakasUniversity.Migrations
 {
+    using KarakasUniversity.Model.Entities;
     using KarakasUniversity.Models;
     using System;
     using System.Collections.Generic;
@@ -7,14 +8,14 @@ namespace KarakasUniversity.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<KarakasUniversity.DAL.SchoolContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<SchoolContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(KarakasUniversity.DAL.SchoolContext context)
+        protected override void Seed(SchoolContext context)
         {
             var students = new List<Student>
             {

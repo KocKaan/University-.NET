@@ -1,6 +1,7 @@
 ﻿
 namespace KarakasUniversity.Models.Interfaces
 {
+    using KarakasUniversity.Model.Entities;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
