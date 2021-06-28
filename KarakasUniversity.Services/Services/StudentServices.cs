@@ -3,7 +3,7 @@ using PagedList;
 
 namespace KarakasUniversity.Services
 {
-    using Deneme;
+    
     using KarakasUniversity.Model.Entities;
     using KarakasUniversity.Models.Interfaces;
     using KarakasUniversity.Services.Interfaces;
@@ -102,8 +102,6 @@ namespace KarakasUniversity.Services
             Student student = _schoolContext.Students.Find(id);
             _schoolContext.Students.Remove(student);
             _schoolContext.SaveChanges();
-            Class1 cla = new Class1();
-            int kk = cla.ten();
 
         }
 
