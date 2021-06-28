@@ -6,7 +6,9 @@ namespace KarakasUniversity.Services
     
     using KarakasUniversity.Model.Entities;
     using KarakasUniversity.Models.Interfaces;
+    using KarakasUniversity.Services.DTO;
     using KarakasUniversity.Services.Interfaces;
+    using KarakasUniversity.Services.Mapping;
     using PagedList;
     using System;
     using System.Collections.Generic;
@@ -79,17 +81,30 @@ namespace KarakasUniversity.Services
 
           //deleted the save changes method
         }
-        public Student getStudentEdit(int? id)
+        public StudentRequestModel getStudentEdit(int? id)
         {
-          Student student=_schoolContext.Students.Find(id);
+            // Student student=_schoolContext.Students.Find(id);
+            var query = _schoolContext.Students.Where(b => b.ID == id);
+            var student = query.FirstOrDefault();
 
-            return student;
+            //Map to StudentRequestModel here 
+             
+            return student.toStudentRequestModel();
 
         }
         
-        public void postStudentEdit(Student std)
+        public void postStudentEdit(int id,String firstName, String lastName, DateTime enrollmentDate)
         {
-            _schoolContext.Entry(std).State = EntityState.Modified;
+            var query = _schoolContext.Students.Where(b => b.ID == id);
+
+            var studentEdit = query.FirstOrDefault();
+
+            studentEdit.FirstMidName = firstName;
+            studentEdit.LastName = lastName;
+            studentEdit.EnrollmentDate = enrollmentDate;
+
+
+         //   _schoolContext.Entry(std).State = EntityState.Modified;
             _schoolContext.SaveChanges();
 
          //  return RedirectToAction("Index");

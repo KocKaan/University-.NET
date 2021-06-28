@@ -1,4 +1,5 @@
 ﻿using KarakasUniversity.Model.Entities;
+using KarakasUniversity.Services.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,9 @@ namespace KarakasUniversity.Services.Interfaces
 
         void postStudentCreate(Student student);
 
-        Student getStudentEdit(int? id);
+         StudentRequestModel getStudentEdit(int? id);
 
-        void postStudentEdit(Student std);
+        void postStudentEdit(int id, String firstName, String lastName, DateTime enrollmentDate);
 
         void postStudentDelete(int id);
 

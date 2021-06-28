@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Http.Description;
 using System.Web.Mvc;
 using KarakasUniversity.Model.Entities;
+using KarakasUniversity.Services.DTO;
 using KarakasUniversity.Services.Interfaces;
 using PagedList;
 
@@ -93,12 +94,12 @@ namespace KarakasUniversity.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = _studentService.getStudentEdit(id);
-            if (student == null)
+            var studentRequestModel = _studentService.getStudentEdit(id);
+            if (studentRequestModel == null)
             {
                 return HttpNotFound();
             }
-            return View("Edit",student);
+            return View("Edit",studentRequestModel);
         }
 
         // POST: Student/Edit/5
@@ -106,10 +107,10 @@ namespace KarakasUniversity.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult EditPost(Student std)
+        public ActionResult EditPost(StudentRequestModel std)
         {
             
-           _studentService.postStudentEdit(std);
+           _studentService.postStudentEdit(std.ID,std.FirstMidName,std.LastName,std.EnrollmentDate);
             
             return RedirectToAction("Index");
         }
