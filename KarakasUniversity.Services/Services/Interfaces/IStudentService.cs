@@ -14,7 +14,7 @@ namespace KarakasUniversity.Services.Interfaces
 
         List<Student> getStudentIndex(string sortOrder, string searchString);
 
-        void postStudentCreate(Student student);
+        void postStudentCreate(StudentRequestModel model);
 
          StudentRequestModel getStudentEdit(int? id);
 

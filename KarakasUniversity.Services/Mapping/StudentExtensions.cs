@@ -29,6 +29,7 @@ namespace KarakasUniversity.Services.Mapping
         {
             var studentModel = new StudentViewModel
             {
+                ID= student.ID,
                 FirstMidName = student.FirstMidName,
                 LastName = student.LastName,
                 EnrollmentDate = student.EnrollmentDate,
@@ -36,6 +37,17 @@ namespace KarakasUniversity.Services.Mapping
 
             };
             return studentModel;
+        }
+        public static Student toStudent(this StudentRequestModel model)
+        {
+            var student = new Student
+            {
+                ID= model.ID,
+                FirstMidName = model.FirstMidName,
+                LastName = model.LastName,
+                EnrollmentDate = model.EnrollmentDate,
+            };
+            return student;
         }
 
     }

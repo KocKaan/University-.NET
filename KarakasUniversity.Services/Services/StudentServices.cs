@@ -68,8 +68,9 @@ namespace KarakasUniversity.Services
             return student.toStudentViewModel();
         }
 
-        public void postStudentCreate(Student student) 
+        public void postStudentCreate(StudentRequestModel model) 
         {
+            Student student = model.toStudent();
             _schoolContext.Students.Add(student);
             _schoolContext.SaveChanges();
 
