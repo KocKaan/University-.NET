@@ -1,4 +1,5 @@
 ﻿using KarakasUniversity.Model.Entities;
+using KarakasUniversity.Models;
 using KarakasUniversity.Services.DTO;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,19 @@ namespace KarakasUniversity.Services.Mapping
 
             };
 
+            return studentModel;
+        }
+
+        public static StudentViewModel toStudentViewModel(this Student student)
+        {
+            var studentModel = new StudentViewModel
+            {
+                FirstMidName = student.FirstMidName,
+                LastName = student.LastName,
+                EnrollmentDate = student.EnrollmentDate,
+                Enrollments=student.Enrollments
+
+            };
             return studentModel;
         }
 

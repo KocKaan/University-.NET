@@ -56,9 +56,9 @@ namespace KarakasUniversity.Controllers
         public ActionResult Details(int? id)
         {
             
-            var result = _studentService.getStudent(id);
+            var viewModel = _studentService.getStudent(id);
 
-            return View(result);
+            return View(viewModel);
         }
 
         // GET: Student/Create

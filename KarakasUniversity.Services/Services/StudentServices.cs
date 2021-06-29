@@ -60,18 +60,12 @@ namespace KarakasUniversity.Services
             return students.ToList();
         }
 
-        public Student getStudent(int? id)
+        public StudentViewModel getStudent(int? id)
         {
-//if (id == null)
-  //          {
-    //            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-      //      }
-            Student student = _schoolContext.Students.Find(id);
-            //    if (student == null)
-            //  {
-            //    return HttpNotFound();
-            //   }
-            return student;
+            var query = _schoolContext.Students.Where(b => b.ID == id);
+            var student = query.FirstOrDefault();
+
+            return student.toStudentViewModel();
         }
 
         public void postStudentCreate(Student student) 
@@ -114,10 +108,10 @@ namespace KarakasUniversity.Services
         public void postStudentDelete(int id)
         {
             //değiştir
-            Student student = _schoolContext.Students.Find(id);
+            var stu = _schoolContext.Students.Where(b => b.ID == id);
+            var student = stu.FirstOrDefault();
             _schoolContext.Students.Remove(student);
             _schoolContext.SaveChanges();
-
         }
 
         public void dispose()

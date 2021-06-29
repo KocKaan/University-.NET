@@ -10,7 +10,7 @@ namespace KarakasUniversity.Services.Interfaces
 {
     public interface IStudentService
     {
-        Student getStudent(int? id);
+        StudentViewModel getStudent(int? id);
 
         List<Student> getStudentIndex(string sortOrder, string searchString);
 
