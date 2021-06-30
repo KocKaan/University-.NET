@@ -30,7 +30,7 @@ namespace KarakasUniversity.Services
 
 
 
-        public List<Student> getStudentIndex(string sortOrder, string searchString)
+        public List<StudentViewModel> getStudentIndex(string sortOrder, string searchString)
         {
             //bak asquaeryble farka bak öncekiyle
             var students = _schoolContext.Students.AsQueryable();
@@ -55,9 +55,10 @@ namespace KarakasUniversity.Services
                     students = students.OrderBy(s => s.LastName);
                     break;
             }
-      
 
-            return students.ToList();
+            var studentList = students.ToList();
+            return studentList.toStudentViewModelList();
+                
         }
 
         public StudentViewModel getStudent(int? id)
@@ -108,7 +109,7 @@ namespace KarakasUniversity.Services
 
         public void postStudentDelete(int id)
         {
-            //değiştir
+            
             var stu = _schoolContext.Students.Where(b => b.ID == id);
             var student = stu.FirstOrDefault();
             _schoolContext.Students.Remove(student);

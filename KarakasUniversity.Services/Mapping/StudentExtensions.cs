@@ -49,6 +49,10 @@ namespace KarakasUniversity.Services.Mapping
             };
             return student;
         }
+        public static List<StudentViewModel> toStudentViewModelList(this List<Student> studentList)
+        {
+            return studentList.Select(x => x.toStudentViewModel()).ToList();
+        }
 
     }
 }

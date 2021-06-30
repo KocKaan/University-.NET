@@ -12,7 +12,7 @@ namespace KarakasUniversity.Services.Interfaces
     {
         StudentViewModel getStudent(int? id);
 
-        List<Student> getStudentIndex(string sortOrder, string searchString);
+        List<StudentViewModel> getStudentIndex(string sortOrder, string searchString);
 
         void postStudentCreate(StudentRequestModel model);
 
