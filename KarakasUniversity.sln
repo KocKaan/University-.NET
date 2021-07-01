@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KarakasUniversity.API", "Ka
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KarakasUniversity.Services", "KarakasUniversity.Services\KarakasUniversity.Services.csproj", "{803F1365-98D7-4A64-956B-158D13169545}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KarakasUniversity.Tests", "KarakasUniversity.Tests\KarakasUniversity.Tests.csproj", "{CEC09BC8-FCB4-457B-9A69-E9C1CC353D1A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{803F1365-98D7-4A64-956B-158D13169545}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{803F1365-98D7-4A64-956B-158D13169545}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{803F1365-98D7-4A64-956B-158D13169545}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEC09BC8-FCB4-457B-9A69-E9C1CC353D1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEC09BC8-FCB4-457B-9A69-E9C1CC353D1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEC09BC8-FCB4-457B-9A69-E9C1CC353D1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEC09BC8-FCB4-457B-9A69-E9C1CC353D1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
