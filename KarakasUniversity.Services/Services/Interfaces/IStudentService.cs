@@ -16,14 +16,12 @@ namespace KarakasUniversity.Services.Interfaces
 
         void postStudentCreate(StudentRequestModel model);
 
-         StudentRequestModel getStudentEdit(int? id);
+        StudentRequestModel getStudentEdit(int? id);
 
         void postStudentEdit(int id, String firstName, String lastName, DateTime enrollmentDate);
 
         void postStudentDelete(int id);
 
         void dispose();
-
-
     }
 }
