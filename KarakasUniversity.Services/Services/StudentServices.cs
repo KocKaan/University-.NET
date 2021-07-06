@@ -75,7 +75,7 @@ namespace KarakasUniversity.Services
             _schoolContext.Students.Add(student);
             _schoolContext.SaveChanges();
 
-         
+          //deleted the save changes method
         }
         public StudentRequestModel getStudentEdit(int? id)
         {

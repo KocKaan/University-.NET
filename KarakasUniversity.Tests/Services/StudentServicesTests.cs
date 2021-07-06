@@ -25,14 +25,33 @@ namespace KarakasUniversity.Services.Tests
         private ISchoolContext _schoolContext;
         
 
-        [SetUp]
+        [OneTimeSetUp]
         public void Init()
         {
             _schoolContext = new SchoolContext(_connection);
             _studentService = new StudentServices(_schoolContext);
 
             _schoolContext.Students.Add(new Student { ID = 1, LastName="Karakas", FirstMidName="Kaan" });
-            ((DbContext)_schoolContext).SaveChanges();
+            _schoolContext.Students.Add(new Student { ID = 2, LastName = "Kebap", FirstMidName = "Adana" });
+           ((DbContext)_schoolContext).SaveChanges();
+
+            //takes snapshot so after each method the database goes back to original
+            _connection.CreateRestorePoint();
+        }
+        [TearDown]
+        public void ClearUp()
+        {
+            _connection.RollbackToRestorePoint(_schoolContext as DbContext);
+        }
+
+        [TestCase("","")]
+        public void getStudentIndex(string sortOrder, string searchString)
+        {
+            //Act 
+            var students = _studentService.getStudentIndex(sortOrder, searchString);
+
+            //Assert
+            students.Count.Should().Be(2);
         }
 
         [TestCase("1")]
@@ -48,7 +67,7 @@ namespace KarakasUniversity.Services.Tests
             //Assert
             //    student.Should().Be(studentViewModel);
             student.ID.Should().Be(id);
-            student.LastName.Should().Be("Kaan");
+            student.LastName.Should().Be("Karakas");
             student.Should().NotBeNull();
 
         }
@@ -64,7 +83,7 @@ namespace KarakasUniversity.Services.Tests
             
         }
         
-        [TestCase("2", "İskender","Murat")]
+        [TestCase("3", "İskender","Murat")]
         public void postStudentCreateTest(int id, string name, string surname)
         {
             //Arrange
@@ -78,17 +97,30 @@ namespace KarakasUniversity.Services.Tests
             //Assert
             _schoolContext.Students.Count(p => p.LastName == model.LastName).Should().NotBe(0);
         }
-        [TestMethod()]
-        public void postStudentEditTest()
+        [TestCase("2","Kerem", "Korsan","05/02/2021")]
+        public void postStudentEditTest(int id, string firstName, string lastName,string dateTime)
         {
+            //Act
+            DateTime enrollmentDate = DateTime.Parse(dateTime);
+            _studentService.postStudentEdit(id, firstName, lastName,enrollmentDate );
 
+            //Assert
+            var student = _schoolContext.Students.FirstOrDefault(x => x.ID == id);
+            student.Should().NotBeNull();
+            student.FirstMidName.Should().Be(firstName);
+            student.LastName.Should().Be(lastName);
         }
 
-        [TestMethod()]
-        public void postStudentDeleteTest()
+        [TestCase("1")]
+        public void postStudentDeleteTest(int id)
         {
-            
+            //Act 
+            _studentService.postStudentDelete(id);
+            //Assert
+            _schoolContext.Students.Count(p => p.ID == id).Should().Be(0);
         }
+
+       
 
 
     }
