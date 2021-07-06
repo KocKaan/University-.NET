@@ -23,6 +23,7 @@ namespace KarakasUniversity.Services.Tests
         EffortConnection _connection = Effort.DbConnectionFactory.CreateTransient();
         private IStudentService _studentService;
         private ISchoolContext _schoolContext;
+        
 
         [SetUp]
         public void Init()
@@ -30,7 +31,7 @@ namespace KarakasUniversity.Services.Tests
             _schoolContext = new SchoolContext(_connection);
             _studentService = new StudentServices(_schoolContext);
 
-            _schoolContext.Students.Add(new Student { ID = 1, LastName="kaan", FirstMidName="Karakas" });
+            _schoolContext.Students.Add(new Student { ID = 1, LastName="Karakas", FirstMidName="Kaan" });
             ((DbContext)_schoolContext).SaveChanges();
         }
 
@@ -47,8 +48,39 @@ namespace KarakasUniversity.Services.Tests
             //Assert
             //    student.Should().Be(studentViewModel);
             student.ID.Should().Be(id);
-            student.LastName.Should().Be("kaan");
+            student.LastName.Should().Be("Kaan");
             student.Should().NotBeNull();
+
+        }
+        [TestCase("1")]
+        public void getStudentEditTest(int? id)
+        {
+            //Act
+            var student = _studentService.getStudentEdit(id);
+
+            //Assert
+            student.Should().NotBeNull();
+            student.ID.Should().Be(id);
+            
+        }
+        
+        [TestCase("2", "İskender","Murat")]
+        public void postStudentCreateTest(int id, string name, string surname)
+        {
+            //Arrange
+            var model = new StudentRequestModel();
+            model.ID = id;
+            model.FirstMidName = name;
+            model.LastName = surname;
+            
+            //Act
+            _studentService.postStudentCreate(model);
+            //Assert
+            _schoolContext.Students.Count(p => p.LastName == model.LastName).Should().NotBe(0);
+        }
+        [TestMethod()]
+        public void postStudentEditTest()
+        {
 
         }
 
